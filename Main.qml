@@ -24,6 +24,7 @@
 
 import QtQuick 2.0
 import SddmComponents 2.0
+import QtMultimedia 5.0
 
 import "Components"
 
@@ -49,14 +50,15 @@ Rectangle {
         }
     }
 
-    Background {
+    VideoOutput { 
         anchors.fill: parent
-        source: config.background
-        fillMode: Image.PreserveAspectCrop
-        onStatusChanged: {
-            if (status == Image.Error && source != config.defaultBackground) {
-                source = config.defaultBackground
-            }
+        source: video_path 
+        MediaPlayer { 
+            id: video_path 
+            autoLoad: true 
+            autoPlay: true 
+            loops: -1 
+            source: config.video_path 
         }
     }
 
@@ -87,7 +89,7 @@ Rectangle {
 
             Text {
                 text: "Restart"
-                color: "#dddddd"
+                color: "#eeeeee"
                 anchors.horizontalCenter: parent.horizontalCenter
             }
         }
@@ -112,7 +114,7 @@ Rectangle {
 
             Text {
                 text: "Poweroff"
-                color: "#dddddd"
+                color: "#eeeeee"
                 anchors.horizontalCenter: parent.horizontalCenter
             }
         }
